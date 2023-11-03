@@ -1,0 +1,26 @@
+<nz-spin [nzSpinning]="isSpinning">
+  <div class="app-logo-container">
+    <nz-avatar [nzShape]="'square'" [nzSize]="128" nzSrc="/assets/logo.svg"/>
+  </div>
+  <form nz-form [formGroup]="form" class="login-form" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-control [nzErrorTip]="emailErrorTpl">
+        <nz-input-group nzPrefixIcon="user">
+          <input nz-input type="email" placeholder="Email" formControlName="email"/>
+          <ng-template #emailErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('email')">Vui lòng nhập đúng email!</ng-container>
+            <ng-container *ngIf="control.hasError('required')">Vui lòng nhập tài khoản!</ng-container>
+          </ng-template>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Vui lòng nhập mật khẩu!">
+        <nz-input-group nzPrefixIcon="lock">
+          <input nz-input type="password" placeholder="Mật khẩu" formControlName="password"/>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <button nz-button class="login-form-button" [nzType]="'primary'">Đăng nhập</button>
+  </form>
+</nz-spin>
