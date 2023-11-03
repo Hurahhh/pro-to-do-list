@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "pro-to-do-list": {
+      "hosting": {
+        "pro-to-do-list": [
+          "pro-to-do-list"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "pro-to-do-list"
+  }
+}
