@@ -1,6 +1,8 @@
 import {Component} from "@angular/core";
-import {CommonUtil} from "../../../@core/util/common.util";
+import {CommonUtil} from "../../../@core/utils/common.util";
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {DayWorkModel} from "../../../@core/models/day-work.model";
+import {format} from "date-fns";
 
 @Component({
   selector: 'ptdl-crud-task',
@@ -8,7 +10,7 @@ import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['crud-task.component.css']
 })
 export class CrudTaskComponent {
-  visible = true;
+  visible = false;
   title = '04/11/2023';
   viewOptions = [
     {label: 'Mặc định', value: 1},
@@ -57,13 +59,12 @@ export class CrudTaskComponent {
     this.taskFormArray.removeAt(index);
   }
 
-  show() {
+  show(dw: DayWorkModel) {
+    this.title = format(dw.date.toDate(), 'dd/MM/yyyy');
     this.visible = true;
   }
 
   hide() {
     this.visible = false;
   }
-
-
 }

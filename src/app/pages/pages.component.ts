@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {Auth, signOut} from '@angular/fire/auth';
 import {NzMessageService} from 'ng-zorro-antd/message';
-import {CommonUtil} from "../@core/util/common.util";
+import {CommonUtil} from "../@core/utils/common.util";
 
 @Component({
   selector: 'app-pages',

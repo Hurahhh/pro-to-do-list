@@ -38,8 +38,12 @@
     </div>
   </nz-collapse-panel>
 </nz-collapse>
-<nz-calendar></nz-calendar>
-<ptdl-crud-task/>
+<nz-calendar
+  [(ngModel)]="selectedDate"
+  [(nzMode)]="calendarMode"
+  (nzSelectChange)="onSelectedDate($event)"
+  (dblclick)="onDblClicked($event)" />
+<ptdl-crud-task #crudTaskComp/>
 
 <ng-template #collapseHeaderTpl>
   <nz-space>
