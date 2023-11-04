@@ -21,6 +21,13 @@ import {NzPopoverModule} from 'ng-zorro-antd/popover';
 import {NzButtonModule} from 'ng-zorro-antd/button';
 import {NzListModule} from 'ng-zorro-antd/list';
 import {NzRateModule} from 'ng-zorro-antd/rate';
+import {NzModalModule} from 'ng-zorro-antd/modal';
+import {NzGridModule} from 'ng-zorro-antd/grid';
+import {NzFormModule} from 'ng-zorro-antd/form';
+import {NzCardModule} from 'ng-zorro-antd/card';
+import {NzInputModule} from 'ng-zorro-antd/input';
+import {NzCheckboxModule} from 'ng-zorro-antd/checkbox';
+import {NzSelectModule} from 'ng-zorro-antd/select';
 
 const routes: Routes = [
   {
@@ -62,6 +69,13 @@ const routes: Routes = [
     NzButtonModule,
     NzListModule,
     NzRateModule,
+    NzModalModule,
+    NzGridModule,
+    NzFormModule,
+    NzCardModule,
+    NzInputModule,
+    NzCheckboxModule,
+    NzSelectModule,
   ]
 })
 export class PagesModule {

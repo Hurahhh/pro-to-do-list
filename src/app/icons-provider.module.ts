@@ -3,10 +3,14 @@ import {NzIconModule} from 'ng-zorro-antd/icon';
 
 import {
   CalendarOutline,
+  CheckCircleTwoTone,
+  CloseCircleTwoTone,
   HeartOutline,
   LockOutline,
   MenuFoldOutline,
   MenuUnfoldOutline,
+  MinusOutline,
+  PlusOutline,
   UserOutline,
 } from '@ant-design/icons-angular/icons';
 
@@ -16,7 +20,11 @@ const icons = [
   MenuFoldOutline,
   MenuUnfoldOutline,
   UserOutline,
-  HeartOutline
+  HeartOutline,
+  PlusOutline,
+  MinusOutline,
+  CheckCircleTwoTone,
+  CloseCircleTwoTone,
 ];
 
 @NgModule({
