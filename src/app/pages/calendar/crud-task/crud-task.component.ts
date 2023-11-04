@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {CommonUtil} from "../../../@core/utils/common.util";
-import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormArray, FormBuilder, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {DayWorkModel} from "../../../@core/models/day-work.model";
 import {format} from "date-fns";
 
@@ -29,6 +29,7 @@ export class CrudTaskComponent {
     {label: '11 lần', value: 11},
   ];
   form!: FormGroup;
+  dw!: DayWorkModel;
 
   constructor(private fb: FormBuilder) {
   }
@@ -43,16 +44,32 @@ export class CrudTaskComponent {
     });
   }
 
+  repeatNumberValidator(fg: AbstractControl): ValidationErrors | null {
+    const required = !!fg.get('repeat')?.value;
+    const hasValue = required ? !!(fg.get('repeatNumber')?.value) : true;
+    if (!hasValue) {
+      fg.get('repeatNumber')?.setErrors({required: true});
+      return {requiredRepeatNumber: true};
+    }
+    return null;
+  };
+
   addTask() {
-    this.taskFormArray.push(this.fb.group({
-      level: [1, [Validators.required]],
-      title: ['a', [Validators.required]],
-      description: ['b', []],
-      repeat: [true, []],
-      repeatNumber: [3, []],
-      done: [true, []],
-      rate: [1, []],
-    }));
+    const fg = this.fb.group(
+      {
+        level: [null, [Validators.required]],
+        title: [null, [Validators.required]],
+        description: [null, []],
+        repeat: [false, []],
+        repeatNumber: [0, []],
+        done: [false, []],
+        rate: [0, []],
+      },
+      {
+        validators: [this.repeatNumberValidator]
+      }
+    );
+    this.taskFormArray.push(fg);
   }
 
   removeTask(index: number) {
@@ -60,6 +77,7 @@ export class CrudTaskComponent {
   }
 
   show(dw: DayWorkModel) {
+    this.dw = dw;
     this.title = format(dw.date.toDate(), 'dd/MM/yyyy');
     this.visible = true;
   }
@@ -67,4 +85,33 @@ export class CrudTaskComponent {
   hide() {
     this.visible = false;
   }
+
+  updateDW() {
+    // validate form
+    if (this.form.invalid) {
+      Object.values(this.form.controls).forEach((c) => {
+        if (c instanceof FormArray) {
+          c.markAsTouched();
+          Object.values(c.controls).forEach((_c) => {
+            if (_c instanceof FormGroup) {
+              Object.values(_c.controls).forEach((__c) => {
+                if (__c.invalid) {
+                  __c.markAsDirty();
+                  __c.updateValueAndValidity({onlySelf: false});
+                }
+              });
+            }
+          });
+        } else if (c.invalid) {
+          c.markAsDirty();
+          c.updateValueAndValidity({onlySelf: false});
+        }
+      });
+      return;
+    }
+
+    // get form data
+    console.log(this.form);
+  }
+
 }

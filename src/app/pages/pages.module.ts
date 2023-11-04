@@ -32,6 +32,7 @@ import {NzInputModule} from 'ng-zorro-antd/input';
 import {NzCheckboxModule} from 'ng-zorro-antd/checkbox';
 import {NzSelectModule} from 'ng-zorro-antd/select';
 import {NzSegmentedModule} from 'ng-zorro-antd/segmented';
+import {NzToolTipModule} from 'ng-zorro-antd/tooltip';
 
 const routes: Routes = [
   {
@@ -83,6 +84,7 @@ const routes: Routes = [
     NzSelectModule,
     NzSegmentedModule,
     ReactiveFormsModule,
+    NzToolTipModule,
   ]
 })
 export class PagesModule {

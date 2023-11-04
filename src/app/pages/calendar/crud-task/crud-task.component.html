@@ -1,7 +1,7 @@
 <nz-modal [nzWidth]="1200" [nzClosable]="false" [(nzVisible)]="visible" (nzOnCancel)="visible = false">
   <ng-container *nzModalContent>
     <nz-card [nzTitle]="title" [nzExtra]="modalCardTpl" [nzBodyStyle]="{ height: '59vh', 'overflow-y': 'auto' }">
-      <div nz-row [nzGutter]="[8, 8]">
+      <div nz-row style="margin-bottom: 24px; margin-top: 8px">
         <div nz-col nzSpan="24">
           <nz-segmented [nzOptions]="viewOptions"></nz-segmented>
         </div>
@@ -10,10 +10,26 @@
         <ng-container formArrayName="tasks">
           <div nz-row [nzGutter]="[8, 8]" *ngFor="let taskFormGroup of taskFormArray.controls; let i = index">
             <ng-container [formGroupName]="i">
+              <div nz-col nzSpan="1">
+                <nz-form-item style="text-align: center">
+                  <nz-form-control>
+                    <button nz-button
+                            nzType="primary"
+                            nzShape="circle"
+                            nzSize="small"
+                            nzDanger
+                            nz-tooltip
+                            nzTooltipTitle="Xóa task"
+                            (click)="removeTask(i)">
+                      <span nz-icon nzType="minus" nzTheme="outline"></span>
+                    </button>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
               <div nz-col nzSpan="2">
                 <nz-form-item>
-                  <nz-form-control nzErrorTip="error!">
-                    <nz-select nzPlaceHolder="Mức độ" formControlName="level">
+                  <nz-form-control nzErrorTip="Bị trống!">
+                    <nz-select nzPlaceHolder="Mức độ" nzAllowClear formControlName="level">
                       <nz-option *ngFor="let o of levelOptions" [nzValue]="o.value" [nzLabel]="o.label" nzCustomContent>
                         <nz-badge [nzColor]="o.color" nzStatus="default"/>
                         <span>{{o.label}}</span>
@@ -24,29 +40,29 @@
               </div>
               <div nz-col nzSpan="4">
                 <nz-form-item>
-                  <nz-form-control nzErrorTip="error!">
+                  <nz-form-control nzErrorTip="Bị trống!">
                     <input nz-input placeholder="Tiêu đề" formControlName="title"/>
                   </nz-form-control>
                 </nz-form-item>
               </div>
               <div nz-col nzSpan="9">
                 <nz-form-item>
-                  <nz-form-control nzErrorTip="error!">
+                  <nz-form-control>
                     <input nz-input placeholder="Nội dung chi tiết" formControlName="description"/>
                   </nz-form-control>
                 </nz-form-item>
               </div>
               <div nz-col nzSpan="2">
                 <nz-form-item>
-                  <nz-form-control nzErrorTip="error!">
-                    <label nz-checkbox formControlName="repeat">Lặp?</label>
+                  <nz-form-control nzErrorTip="error!" style="text-align: center">
+                    <label nz-checkbox formControlName="repeat">Lặp lại?</label>
                   </nz-form-control>
                 </nz-form-item>
               </div>
-              <div nz-col nzSpan="2">
+              <div nz-col nzSpan="2" [class.hidden]="!taskFormGroup.get('repeat')?.value">
                 <nz-form-item>
-                  <nz-form-control nzErrorTip="error!">
-                    <nz-select nzPlaceHolder="Số lần lặp" formControlName="repeatNumber">
+                  <nz-form-control nzErrorTip="Bị trống!">
+                    <nz-select nzPlaceHolder="Số lần lặp" nzAllowClear formControlName="repeatNumber">
                       <nz-option *ngFor="let o of repeatOptions" [nzValue]="o.value" [nzLabel]="o.label"/>
                     </nz-select>
                   </nz-form-control>
@@ -54,24 +70,15 @@
               </div>
               <div nz-col nzSpan="2">
                 <nz-form-item>
-                  <nz-form-control nzErrorTip="error!">
+                  <nz-form-control nzErrorTip="error!" style="text-align: center">
                     <label nz-checkbox formControlName="done">Xong?</label>
                   </nz-form-control>
                 </nz-form-item>
               </div>
-              <div nz-col nzSpan="2">
-                <nz-form-item>
-                  <nz-form-control nzErrorTip="error!">
-                    <nz-rate [nzCharacter]="rateIconTpl" [nzTooltips]="['Tệ', 'Tạm', 'Tốt']" formControlName="rate"/>
-                  </nz-form-control>
-                </nz-form-item>
-              </div>
-              <div nz-col nzSpan="1">
+              <div nz-col nzSpan="2" [class.hidden]="!taskFormGroup.get('done')?.value">
                 <nz-form-item>
                   <nz-form-control>
-                    <button nz-button nzType="primary" nzShape="circle" nzSize="small" nzDanger (click)="removeTask(i)">
-                      <span nz-icon nzType="minus" nzTheme="outline"></span>
-                    </button>
+                    <nz-rate [nzCharacter]="rateIconTpl" [nzTooltips]="['Tệ', 'Tạm', 'Tốt']" formControlName="rate"/>
                   </nz-form-control>
                 </nz-form-item>
               </div>
@@ -81,11 +88,27 @@
       </form>
     </nz-card>
   </ng-container>
+  <ng-container *nzModalFooter>
+    <button nz-button nzType="default" (click)="visible = false">Hủy</button>
+    <button nz-button
+            nzType="primary"
+            [disabled]="taskFormArray.length <= 0"
+            (click)="updateDW()">
+      {{!!dw.id ? 'Cập nhật' : 'Lưu'}}
+    </button>
+  </ng-container>
 </nz-modal>
 
 <ng-template #modalCardTpl>
   <nz-space>
-    <button *nzSpaceItem nz-button nzType="primary" nzShape="circle" nzSize="small" (click)="addTask()">
+    <button *nzSpaceItem
+            nz-button
+            nzType="primary"
+            nzShape="circle"
+            nzSize="small"
+            nz-tooltip
+            nzTooltipTitle="Thêm task"
+            (click)="addTask()">
       <span nz-icon nzType="plus" nzTheme="outline"></span>
     </button>
   </nz-space>
