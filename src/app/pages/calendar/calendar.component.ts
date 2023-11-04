@@ -7,5 +7,4 @@ import {CommonUtil} from "../../@core/util/common.util";
 })
 export class CalendarComponent {
   COLORS = CommonUtil.COLORS;
-  visibleModal = true;
 }

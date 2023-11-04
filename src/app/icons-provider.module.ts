@@ -5,12 +5,12 @@ import {
   CalendarOutline,
   CheckCircleTwoTone,
   CloseCircleTwoTone,
-  HeartOutline,
   LockOutline,
   MenuFoldOutline,
   MenuUnfoldOutline,
   MinusOutline,
   PlusOutline,
+  StarFill,
   UserOutline,
 } from '@ant-design/icons-angular/icons';
 
@@ -20,11 +20,11 @@ const icons = [
   MenuFoldOutline,
   MenuUnfoldOutline,
   UserOutline,
-  HeartOutline,
   PlusOutline,
   MinusOutline,
   CheckCircleTwoTone,
   CloseCircleTwoTone,
+  StarFill,
 ];
 
 @NgModule({

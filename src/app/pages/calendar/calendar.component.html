@@ -39,92 +39,7 @@
   </nz-collapse-panel>
 </nz-collapse>
 <nz-calendar></nz-calendar>
-<nz-modal [nzWidth]="1200" [nzClosable]="false" [(nzVisible)]="visibleModal" (nzOnCancel)="visibleModal = false">
-  <ng-container *nzModalContent>
-    <nz-card nzTitle="04/11/2023" [nzExtra]="modalCardTpl" [nzBodyStyle]="{ height: '59vh', 'overflow-y': 'auto' }">
-      <div nz-row [nzGutter]="[8, 8]">
-        <div nz-col nzSpan="2">
-          <nz-form-item>
-            <nz-form-control nzErrorTip="error!">
-              <nz-select nzPlaceHolder="Độ khẩn">
-                <nz-option nzValue="1" nzLabel="Low" nzCustomContent>
-                  <nz-badge [nzColor]="COLORS.INFO" nzStatus="default"></nz-badge>
-                  Low
-                </nz-option>
-                <nz-option nzValue="2" nzLabel="Medium" nzCustomContent>
-                  <nz-badge [nzColor]="COLORS.WARNING" nzStatus="default"></nz-badge>
-                  Medium
-                </nz-option>
-                <nz-option nzValue="3" nzLabel="High" nzCustomContent>
-                  <nz-badge [nzColor]="COLORS.ERROR" nzStatus="default"></nz-badge>
-                  High
-                </nz-option>
-              </nz-select>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col nzSpan="4">
-          <nz-form-item>
-            <nz-form-control nzErrorTip="error!">
-              <input nz-input placeholder="Tiêu đề"/>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col nzSpan="9">
-          <nz-form-item>
-            <nz-form-control nzErrorTip="error!">
-              <input nz-input placeholder="Nội dung chi tiết"/>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col nzSpan="2">
-          <nz-form-item>
-            <nz-form-control nzErrorTip="error!">
-              <label nz-checkbox>Lặp?</label>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col nzSpan="2">
-          <nz-form-item>
-            <nz-form-control nzErrorTip="error!">
-              <nz-select nzPlaceHolder="Số lần lặp">
-                <nz-option nzValue="1" nzLabel="03 lần"></nz-option>
-                <nz-option nzValue="2" nzLabel="05 lần"></nz-option>
-                <nz-option nzValue="3" nzLabel="07 lần"></nz-option>
-                <nz-option nzValue="4" nzLabel="09 lần"></nz-option>
-                <nz-option nzValue="5" nzLabel="11 lần"></nz-option>
-              </nz-select>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col nzSpan="2">
-          <nz-form-item>
-            <nz-form-control nzErrorTip="error!">
-              <label nz-checkbox>Xong?</label>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col nzSpan="2">
-          <nz-form-item>
-            <nz-form-control nzErrorTip="error!">
-              <nz-rate [nzCharacter]="rateIconTpl" [ngModel]="0"></nz-rate>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col nzSpan="1">
-          <nz-form-item>
-            <nz-form-control>
-              <button nz-button nzType="primary" nzShape="circle" nzSize="small" nzDanger>
-                <span nz-icon nzType="minus" nzTheme="outline"></span>
-              </button>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-      </div>
-    </nz-card>
-  </ng-container>
-</nz-modal>
-
+<ptdl-crud-task/>
 
 <ng-template #collapseHeaderTpl>
   <nz-space>
@@ -163,15 +78,8 @@
 </ng-template>
 <ng-template #rateIconTpl let-index>
   <ng-container [ngSwitch]="index">
-    <span nz-icon nzType="heart" *ngSwitchCase="0"></span>
-    <span nz-icon nzType="heart" *ngSwitchCase="1"></span>
-    <span nz-icon nzType="heart" *ngSwitchCase="2"></span>
+    <span nz-icon nzType="star" nzTheme="fill" *ngSwitchCase="0"></span>
+    <span nz-icon nzType="star" nzTheme="fill" *ngSwitchCase="1"></span>
+    <span nz-icon nzType="star" nzTheme="fill" *ngSwitchCase="2"></span>
   </ng-container>
-</ng-template>
-<ng-template #modalCardTpl>
-  <nz-space>
-    <button *nzSpaceItem nz-button nzType="primary" nzShape="circle" nzSize="small">
-      <span nz-icon nzType="plus" nzTheme="outline"></span>
-    </button>
-  </nz-space>
 </ng-template>
