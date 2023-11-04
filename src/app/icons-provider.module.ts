@@ -3,10 +3,11 @@ import {NzIconModule} from 'ng-zorro-antd/icon';
 
 import {
   CalendarOutline,
+  HeartOutline,
   LockOutline,
   MenuFoldOutline,
   MenuUnfoldOutline,
-  UserOutline
+  UserOutline,
 } from '@ant-design/icons-angular/icons';
 
 const icons = [
@@ -14,7 +15,8 @@ const icons = [
   LockOutline,
   MenuFoldOutline,
   MenuUnfoldOutline,
-  UserOutline
+  UserOutline,
+  HeartOutline
 ];
 
 @NgModule({

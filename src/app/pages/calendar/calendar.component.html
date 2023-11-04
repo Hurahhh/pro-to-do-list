@@ -1,0 +1,82 @@
+<nz-collapse nzExpandIconPosition="right">
+  <nz-collapse-panel [nzHeader]="collapseHeaderTpl">
+    <div>
+      <nz-badge [nzColor]="COLORS.INFO" nzStatus="default"></nz-badge>
+      <nz-space>
+        <b *nzSpaceItem>Lorem ip sum</b>
+        <nz-tag *nzSpaceItem [nzColor]="'blue'" nz-popover [nzPopoverContent]="popoverContentTmp">1st/9</nz-tag>
+      </nz-space>
+      <p>
+        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
+        corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in
+        culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga
+      </p>
+    </div>
+    <div>
+      <nz-badge [nzColor]="COLORS.WARNING" nzStatus="default"></nz-badge>
+      <nz-space>
+        <b *nzSpaceItem>Lorem ip sum</b>
+        <nz-tag *nzSpaceItem [nzColor]="'gold'">2st/9</nz-tag>
+      </nz-space>
+      <p>
+        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
+        corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in
+        culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga
+      </p>
+    </div>
+    <div>
+      <nz-badge [nzColor]="COLORS.ERROR" nzStatus="default"></nz-badge>
+      <nz-space>
+        <b *nzSpaceItem>Lorem ip sum</b>
+        <nz-tag *nzSpaceItem [nzColor]="'red'">3rd/9</nz-tag>
+      </nz-space>
+      <p>
+        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
+        corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in
+        culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga
+      </p>
+    </div>
+  </nz-collapse-panel>
+</nz-collapse>
+<nz-calendar></nz-calendar>
+
+<ng-template #collapseHeaderTpl>
+  <nz-space>
+    <h3 *nzSpaceItem>04/11/2023</h3>
+    <nz-badge *nzSpaceItem nzStandalone [nzCount]="199" [nzStyle]="{ backgroundColor: COLORS.INFO }"></nz-badge>
+    <nz-badge *nzSpaceItem nzStandalone [nzCount]="199" [nzStyle]="{ backgroundColor: COLORS.WARNING }"></nz-badge>
+    <nz-badge *nzSpaceItem nzStandalone [nzCount]="199" [nzStyle]="{ backgroundColor: COLORS.ERROR }"></nz-badge>
+  </nz-space>
+</ng-template>
+<ng-template #popoverContentTmp>
+  <nz-list nzSize="small">
+    <nz-list-item>
+      <nz-space nzAlign="center">
+        <span *nzSpaceItem>#1</span>
+        <span *nzSpaceItem>01/11/2023</span>
+        <nz-rate *nzSpaceItem [nzCharacter]="rateIconTpl" [ngModel]="3" nzDisabled></nz-rate>
+      </nz-space>
+    </nz-list-item>
+    <nz-list-item>
+      <nz-space nzAlign="center">
+        <span *nzSpaceItem>#2</span>
+        <span *nzSpaceItem>02/11/2023</span>
+        <nz-rate *nzSpaceItem [nzCharacter]="rateIconTpl" [ngModel]="2" nzDisabled></nz-rate>
+      </nz-space>
+    </nz-list-item>
+    <nz-list-item>
+      <nz-space nzAlign="center">
+        <span *nzSpaceItem>#3</span>
+        <span *nzSpaceItem>03/11/2023</span>
+        <nz-rate *nzSpaceItem [nzCharacter]="rateIconTpl" [ngModel]="1" nzDisabled></nz-rate>
+      </nz-space>
+    </nz-list-item>
+  </nz-list>
+</ng-template>
+<ng-template #rateIconTpl let-index>
+  <ng-container [ngSwitch]="index">
+    <span nz-icon nzType="heart" *ngSwitchCase="0"></span>
+    <span nz-icon nzType="heart" *ngSwitchCase="1"></span>
+    <span nz-icon nzType="heart" *ngSwitchCase="2"></span>
+  </ng-container>
+</ng-template>
